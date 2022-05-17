@@ -1,11 +1,11 @@
-from app import db, login
-from flask_login import UserMixin # IS ONLY FOR THE USER MODEL!!!!
+from app import db
+# from flask_login import UserMixin # IS ONLY FOR THE USER MODEL!!!!
 from datetime import datetime as dt, timedelta
 from werkzeug.security import generate_password_hash, check_password_hash
 import secrets
 
 
-class User(UserMixin, db.Model):
+class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String)
     last_name =  db.Column(db.String)
@@ -89,10 +89,10 @@ class User(UserMixin, db.Model):
             'token':self.token
         }
 
-@login.user_loader
-def load_user(id):
-    return User.query.get(int(id))
-    # SELECT * FROM user WHERE id = ???
+# @login.user_loader
+# def load_user(id):
+#     return User.query.get(int(id))
+#     # SELECT * FROM user WHERE id = ???
 
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
