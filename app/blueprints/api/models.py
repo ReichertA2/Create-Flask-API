@@ -25,7 +25,7 @@ class User(db.Model):
         # give the user their back token if their is still valid
         if self.token and self.token_exp > current_time + timedelta(seconds=60):
             return self.token
-        # if the token DNE or is exp
+        # if the token Does Not Exist or is exp
         self.token = secrets.token_urlsafe(32)
         self.token_exp = current_time + timedelta(seconds=exp)
         self.save()
